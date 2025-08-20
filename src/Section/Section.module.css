@@ -1,0 +1,32 @@
+.section {
+  background-color: black;
+  padding: 20px;
+ 
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.sectionTitle {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.toggleBtn {
+background-color: black;
+  color: #34C94B;
+  
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
+}
