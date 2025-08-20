@@ -1,38 +1,62 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 import Card from "../Card/Card";
-import styles from "./Section.module.css";
+import "./Section.module.css";
 
-const Section = ({ title, apiEndpoint }) => {
-  const [albums, setAlbums] = useState([]);
-  const [expanded, setExpanded] = useState(false);
+const Section = ({ title, url, type }) => {
+  const [data, setData] = useState([]);
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
-    axios.get(apiEndpoint).then((res) => setAlbums(res.data));
-  }, [apiEndpoint]);
-
-  const toggleExpand = () => setExpanded(!expanded);
-  const visibleAlbums = expanded ? albums : albums.slice(0, 10);
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(url);
+         console.log("Fetched Data:", response.data);
+        setData(response.data);
+      } catch (err) {
+        console.error("Error fetching section data", err);
+      }
+    };
+    fetchData();
+  }, [url]);
 
   return (
-    <div className={styles.section}>
-      <div className={styles.header}>
-        <h2 className={styles.sectionTitle}>{title}</h2>
-        <button onClick={toggleExpand} className={styles.toggleBtn}>
-          {expanded ? "Collapse" : "Show All"}
+    <div className="section">
+      {/* Section Header */}
+      <div className="sectionHeader">
+        <h2>{title}</h2>
+        <button className="collapseButton" onClick={() => setShowAll(!showAll)}>
+          {showAll ? "Collapse" : "Show All"}
         </button>
       </div>
 
-      <div className={styles.cardGrid}>
-        {visibleAlbums.map((album) => (
-          <Card
-            key={album.id}
-            image={album.image}
-            follows={album.follows}
-            title={album.title}
-            subtitle={album.songs.length + " Songs"}
-          />
-        ))}
+      {/* Cards */}
+      <div className="cardsWrapper">
+        {showAll ? (
+          <div className="cardsGrid">
+            {data.map((item) => (
+              <Card key={item.id} item={item} type={type} />
+            ))}
+          </div>
+        ) : (
+          <Swiper
+            modules={[Navigation]}
+            spaceBetween={20}
+            slidesPerView={7}
+            navigation
+            className="albumSwiper"
+          >
+            {data.map((item) => (
+              <SwiperSlide key={item.id}>
+                <Card item={item} type={type} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
       </div>
     </div>
   );

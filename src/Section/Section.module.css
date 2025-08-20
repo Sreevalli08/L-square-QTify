@@ -1,32 +1,36 @@
 .section {
   background-color: black;
   padding: 20px;
- 
 }
 
-.header {
+.sectionHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 15px;
 }
 
-.sectionTitle {
+.sectionHeader h2 {
   color: white;
   font-size: 20px;
   font-weight: 700;
 }
 
-.toggleBtn {
-background-color: black;
+.collapseButton {
+  background: transparent;
   color: #34C94B;
-  
+  border: none;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 600;
 }
 
-.cardGrid {
+.cardsGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 20px;
+}
+
+.albumSwiper {
+  padding: 10px 0;
 }

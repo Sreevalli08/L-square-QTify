@@ -16,13 +16,13 @@ function App() {
     {/**Top Albums */}
     <Section
     title="Top Albums"
-    apiEndpoint="https://qtify-backend-labs.crio.do/albums/top"/>
+    url="https://qtify-backend-labs.crio.do/albums/top"/>
 
      {/*New Albums */}
 
      <Section
      title="New Albums"
-     apiEndpoint= "https://qtify-backend-labs.crio.do/albums/new"
+     url= "https://qtify-backend-labs.crio.do/albums/new"
 
   />
 
