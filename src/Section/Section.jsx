@@ -56,7 +56,7 @@ const Section = ({ title, url }) => {
         ) : (
           <Swiper
             modules={[Navigation]}
-            spaceBetween={20}
+            spaceBetween={1}
             slidesPerView={7}
             navigation
             className="albumSwiper"
