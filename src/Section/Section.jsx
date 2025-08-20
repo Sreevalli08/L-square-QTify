@@ -5,9 +5,9 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import Card from "../Card/Card";
-import "./Section.module.css";
+import styles from "./Section.module.css";
 
-const Section = ({ title, url, type }) => {
+const Section = ({ title, url }) => {
   const [data, setData] = useState([]);
   const [showAll, setShowAll] = useState(false);
 
@@ -15,7 +15,7 @@ const Section = ({ title, url, type }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(url);
-         console.log("Fetched Data:", response.data);
+        console.log("Fetched Data:", response.data);
         setData(response.data);
       } catch (err) {
         console.error("Error fetching section data", err);
@@ -27,9 +27,12 @@ const Section = ({ title, url, type }) => {
   return (
     <div className="section">
       {/* Section Header */}
-      <div className="sectionHeader">
+      <div className={styles.sectionHeader}>
         <h2>{title}</h2>
-        <button className="collapseButton" onClick={() => setShowAll(!showAll)}>
+        <button
+          className={styles.collapseButton}
+          onClick={() => setShowAll(!showAll)}
+        >
           {showAll ? "Collapse" : "Show All"}
         </button>
       </div>
@@ -39,7 +42,15 @@ const Section = ({ title, url, type }) => {
         {showAll ? (
           <div className="cardsGrid">
             {data.map((item) => (
-              <Card key={item.id} item={item} type={type} />
+              <Card
+                key={item.id}
+                image={item.image}
+                title={item.title}
+                subtitle={
+                  item.subtitle || (item.songs?.length ? `${item.songs.length} songs` : "")
+                }
+                follows={item.follows}
+              />
             ))}
           </div>
         ) : (
@@ -52,7 +63,15 @@ const Section = ({ title, url, type }) => {
           >
             {data.map((item) => (
               <SwiperSlide key={item.id}>
-                <Card item={item} type={type} />
+                <Card
+                  key={item.id}
+                  image={item.image}
+                  title={item.title}
+                  subtitle={
+                    item.subtitle || (item.songs?.length ? `${item.songs.length} songs` : "")
+                  }
+                  follows={item.follows}
+                />
               </SwiperSlide>
             ))}
           </Swiper>
