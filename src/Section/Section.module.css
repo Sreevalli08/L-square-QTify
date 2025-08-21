@@ -35,3 +35,32 @@
 .albumSwiper {
   padding: 10px 0;
 }
+
+
+.tabs {
+
+min-height: 36px;
+  background-color: transparent;
+}
+.tab {
+  text-transform: capitalize; 
+  font-size: 14px;
+  color: #fff;  
+  padding: 0 16px;
+  min-width: auto;  
+}
+.tab.Mui-selected {
+  color: #34c94b;  
+}
+
+.loading,
+.error {
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 16px;
+}
+
+.error {
+  color: #ff4d4d;  /* Red for errors */
+}

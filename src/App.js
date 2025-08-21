@@ -1,5 +1,4 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
 import Navbar from "./Navbar/Navbar";
 import Hero from "./Hero/Hero";
 import Section from "./Section/Section";
@@ -24,6 +23,13 @@ function App() {
      title="New Albums"
      url= "https://qtify-backend-labs.crio.do/albums/new"
 
+  />
+
+  < Section
+
+  title="Songs"
+  url="https://qtify-backend-labs.crio.do/songs"
+  type="songs"
   />
 
   </div>

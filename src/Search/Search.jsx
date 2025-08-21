@@ -54,6 +54,10 @@ function Search({ searchData, placeholder }) {
   const navigate = useNavigate();
   const onSubmit = (e, value) => {
     e.preventDefault();
+    if(!value || !value.slug){
+      console.error("No album selected yet!");
+    return;
+  }
     console.log(value);
     navigate(`/album/${value.slug}`);
     //Process form data, call API, set state etc.
