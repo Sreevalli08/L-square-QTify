@@ -10,16 +10,13 @@ import styles from "./Card.module.css";
         <img src={image} alt={title} className={styles.cardImage} />
 
         {/* Title directly on image */}
-        <p className={styles.cardTitle}>{title}</p>
+        <div className={styles.cardTitle}>{title}</div>
 
         {/* White box with black pill follows */}
         <div className={styles.followBox}>
-          {type === "songs" ? (
-            <span className={styles.followChips}>{likes}Likes</span>
-          ):(
-          
-          <span className={styles.followChip}>{follows} Follows</span>
-          )}
+       <span className={styles.followChip}>
+            {type === "songs" ? `${likes} Likes` : `${follows} Follows`}
+          </span>
         </div>
       </div>
 

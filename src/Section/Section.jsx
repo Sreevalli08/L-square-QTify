@@ -19,6 +19,8 @@ function Section({ title, url, type }) {
   // Fetch section data (songs/albums etc.)
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true); // Added: Trigger loading state
+      setError(null); // reset error
       try {
         const response = await axios.get(url);
         setData(response.data);
@@ -36,6 +38,8 @@ function Section({ title, url, type }) {
   useEffect(() => {
     if (type === "songs") {
       const fetchGenres = async () => {
+        setLoading(true);  // Added: Trigger loading state
+        setError(null);    // Reset error
         try {
           const response = await axios.get(
             "https://qtify-backend-labs.crio.do/genres"
